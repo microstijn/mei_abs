@@ -55,29 +55,26 @@ graph TD
 Also added this risk part. I found it difficult to make.
 
 ```mermaid
-graph LR
-    subgraph Step 1: Gather Inputs
-        A["`Modeled antibiotic concentration (PEC)`"]
-        B["`Community PNEC data`"]
-        C["`Pathogen MIC data`"]
+graph TD
+    A[Start: Predicted environmental concentrations <br>of antibiotics in rivers] --> B{Tier 1:<br> Individual Antibiotic Risk};
+
+    subgraph Tier 1
+        B --> B1[Tier 1a: <br>Risk to Entire Microbial<br> Community];
+        B --> B2[Tier 1b: <br>Risk to Priorit ypathogens];
+    end
+p
+    B1 --> C1[Calculate Risk Quotient<br> <b>Focus:</b> General environmental microbiota];
+    B2 --> C2[Calculate Risk Quotient<br> <b>Focus:</b> 16 specific WHO pathogens];
+
+    C1 & C2 --> D{Tier 2: <br> Antibiotic mixture Risk};
+
+    subgraph Tier 2
+        D --> D1[Tier 2a: <br> Mixture screening: <br> CA Model];
+        D --> D2[Tier 2b: <br> Refined mixture Assessment: <br> PAF];
     end
 
-    subgraph Step 2: Tier 1 Individual Risk Assessment
-        A & B --> T1a_Calc{"`Tier 1a: Calculate community RQ`"}
-        T1a_Calc --> T1a_Out(("\`Community risk classification\`"))
+    D1 --> E1[Sum risk quotients for <br> aantibiotic groups. <br> <b>Focus:</b> Groups like fluoroquinolones<br> acting on E. coli];
+    D2 --> E2[Calculate potentially <br> affected Fraction for E. coli.<br>  <b>Focus:</b> Quantify proportion of E. coli<br> strains affected by <br>fluoroquinolones];
 
-        A & C --> T1b_PNEC{"`Tier 1b: Derive pathogen-specific PNEC`"</pre>}
-        T1b_PNEC --> T1b_Calc{"`Calculate pathogen RQ`"}
-        T1b_Calc --> T1b_Out(("\`Pathogen-specific risk assessment\`"))
-    end
-
-    subgraph Step 3: Tier 2 Mixture Risk Assessment
-        T1a_Calc & T1b_Calc --> T2a_Calc{"`Tier 2a: Sum RQs for mixtures using concentration addition`"}
-        T2a_Calc --> T2a_Out(("\`Screening-level mixture risk\`"))
-        
-        T2a_Out --> T2b_Input["`Input for refined analysis: E. coli & Fluoroquinolones`"]
-        T2b_Input --> T2b_TU{"`Tier 2b: Calculate toxic units (TU)`"}
-        T2b_TU --> T2b_PAF{"`Calculate multi-substance PAF`"}
-        T2b_PAF --> T2b_Out(("\`Refined risk: Potentially affected fraction of E. coli\`"))
-    end
+    E1 & E2 --> F[Final output: Identification of <br>high-risk river stretches & estimation <br> of total affected <br> bacterial load];
 ```
