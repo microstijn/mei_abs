@@ -52,7 +52,18 @@ graph TD
 
 # Flowchart of risk part
 
-Also added this risk part. I found it difficult to make.
+Also added this risk part. I found it difficult to make. I wanted to create a visual summary of the tiered risk assessment framework. It includes both a flowchart to illustrate the process and a table for comparing the specifics of each tier.
+
+### Table: Detailed Comparison of Risk Assessment Tiers
+
+This table provides a concise summary of the key components of each tier for easy reference and comparison.
+
+| Tier | objective | target group | Key metric // Method | Formula(s) |
+| :--- | :--- | :--- | :--- | :--- |
+| **1a** | Broad screening of risk from individual antibiotics. | Entire microbial community. | **Risk Quotient ($RQ_{AR-COM}$)** based on the most sensitive species. | $RQ_{AR-COM} = \frac{PEC}{PNEC_{AR-COM}}$ |
+| **1b** | Assess direct selection risk for clinically relevant bacteria. | 16 WHO bacterial priority pathogens (e.g., *E. coli*, *K. pneumoniae*). | **Risk Quotient ($RQ_{AR-PP}$)** based on pathogen-specific sensitivity distribution (SSD-like approach). | $RQ_{AR-PP} = \frac{PEC}{PNEC_{AR-PP}}$ <br> where $PNEC_{AR-PP} = \frac{EC5}{AF}$ |
+| **2a** | Conservative screening of risk from mixtures of similarly acting antibiotics. | Antibiotic classes (e.g., fluoroquinolones, tetracyclines) on the community and specifically on *E. coli*. | **Concentration Addition (CA)** by summing individual RQs. | $RQ_{mixture} = \sum RQ_i$ |
+| **2b** | Quantify the fraction of a pathogen population under selection pressure from a mixture. | *E. coli* strains exposed to fluoroquinolone mixtures. | **Potentially Affected Fraction (PAF)** based on summed Toxic Units (TU). | $TU = \frac{PEC}{EC_{midpoint}}$ <br> $PAF = 1 - \frac{1}{1+e^{-(\log{TU_{sum}}/\beta_{average})}}$ |
 
 ```mermaid
 graph TD
