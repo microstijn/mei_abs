@@ -1,6 +1,6 @@
 # Flowchart of SM ab paper
 
-Still incomplete but a decent start. 
+Still incomplete but a decent start. I wanted to create a visual summary of how the model functions, formatted as a flowchart. 
 
 ```mermaid
 graph TD
